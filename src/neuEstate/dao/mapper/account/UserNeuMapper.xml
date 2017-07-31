@@ -94,6 +94,36 @@
     "userAccount", "userName", "userPassword", "userPhoneNumber", "userEmail", "userAuthority", "userGender",
     "userIdCard", "userIdCardType"
   </sql>
+  <select id="selectByVagueUserAccount" resultMap="BaseResultMap" parameterType="neuEstate.po.account.UserNeu"  >
+    select
+    <include refid="Base_Column_List" />
+    from USER_NEU
+    where ("userAccount" LIKE '%'||#{useraccount,jdbcType=VARCHAR}||'%')
+  </select>
+  <select id="countByVagueUserAccount" resultType="java.lang.Integer" parameterType="neuEstate.po.account.UserNeu"  >
+    select count(*) from USER_NEU
+    where ("userAccount" LIKE '%'||#{useraccount,jdbcType=VARCHAR}||'%')
+  </select>
+  <select id="selectByVagueUserName" resultMap="BaseResultMap" parameterType="neuEstate.po.account.UserNeu"  >
+    select
+    <include refid="Base_Column_List" />
+    from USER_NEU
+    where ("userName" LIKE '%'||#{username,jdbcType=VARCHAR}||'%')
+  </select>
+  <select id="countByVagueUserName" resultType="java.lang.Integer" parameterType="neuEstate.po.account.UserNeu"  >
+    select count(*) from USER_NEU
+    where ("userName" LIKE '%'||#{username,jdbcType=VARCHAR}||'%')
+  </select>
+  <select id="selectByVagueDouble" resultMap="BaseResultMap" parameterType="neuEstate.po.account.UserNeu" >
+    select
+    <include refid="Base_Column_List" />
+    from USER_NEU
+    where ("userAccount" LIKE '%'||#{useraccount,jdbcType=VARCHAR}||'%' AND "userName" LIKE '%'||#{username,jdbcType=VARCHAR}||'%')
+  </select>
+  <select id="countByVagueDouble" resultType="java.lang.Integer" parameterType="neuEstate.po.account.UserNeu"  >
+    select count(*) from USER_NEU
+    where ("userAccount" LIKE '%'||#{useraccount,jdbcType=VARCHAR}||'%' and "userName" LIKE '%'||#{username,jdbcType=VARCHAR}||'%' )
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="neuEstate.po.account.UserNeuExample" >
     <!--
       WARNING - @mbggenerated
@@ -284,15 +314,15 @@
       This element was generated on Sun Jul 30 22:26:32 CST 2017.
     -->
     update USER_NEU
-    set userAccount = #{record.useraccount,jdbcType=VARCHAR},
-      userName = #{record.username,jdbcType=VARCHAR},
-      userPassword = #{record.userpassword,jdbcType=VARCHAR},
-      userPhoneNumber = #{record.userphonenumber,jdbcType=VARCHAR},
-      userEmail = #{record.useremail,jdbcType=VARCHAR},
-      userAuthority = #{record.userauthority,jdbcType=VARCHAR},
-      userGender = #{record.usergender,jdbcType=VARCHAR},
-      userIdCard = #{record.useridcard,jdbcType=VARCHAR},
-      userIdCardType = #{record.useridcardtype,jdbcType=VARCHAR}
+    set "userAccount" = #{record.useraccount,jdbcType=VARCHAR},
+    "userName" = #{record.username,jdbcType=VARCHAR},
+    "userPassword" = #{record.userpassword,jdbcType=VARCHAR},
+    "userPhoneNumber" = #{record.userphonenumber,jdbcType=VARCHAR},
+    "userEmail" = #{record.useremail,jdbcType=VARCHAR},
+    "userAuthority" = #{record.userauthority,jdbcType=VARCHAR},
+    "userGender" = #{record.usergender,jdbcType=VARCHAR},
+    "userIdCard" = #{record.useridcard,jdbcType=VARCHAR},
+    "userIdCardType" = #{record.useridcardtype,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

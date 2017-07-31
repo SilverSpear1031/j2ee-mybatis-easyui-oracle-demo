@@ -38,7 +38,7 @@ public class Register extends HttpServlet{
         if(info.equals("添加用户成功！")){
             req.getSession().setAttribute("userName",userNeu.getUsername());
             req.getSession().setAttribute("userAccount",userNeu.getUseraccount());
-            resp.sendRedirect("/index.jsp");
+            resp.sendRedirect("/AdminisAccount.jsp");
         }else {
             req.getSession().setAttribute("info",info);
             resp.sendRedirect("/Register.jsp");

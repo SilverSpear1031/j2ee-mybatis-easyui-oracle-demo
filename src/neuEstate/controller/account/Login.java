@@ -48,7 +48,7 @@ public class Login extends HttpServlet {
                 resp.addCookie(cookie1);
                 resp.addCookie(cookie2);
             }
-            resp.sendRedirect("/index.jsp");
+            resp.sendRedirect("/AdminisAccount.jsp");
 //            PrintWriter writer = resp.getWriter();
 //            writer.print("欢迎"+info+"登陆！");
 //            resp.setHeader("Refresh", "3;URL=/NeuEstate/XXServlet");
