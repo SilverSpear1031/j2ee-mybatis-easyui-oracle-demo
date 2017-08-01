@@ -14,6 +14,7 @@ import java.io.IOException;
 
 /**
  * Created by RuiPeng on 2017/7/31.
+ * 管理员修改帐号
  */
 @WebServlet(name = "AdminisAccount_UpdateServlet", urlPatterns = "/AdminisAccount_Update.servlet")
 public class Adminis_Update extends HttpServlet {

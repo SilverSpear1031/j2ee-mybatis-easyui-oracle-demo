@@ -15,8 +15,8 @@ import java.io.IOException;
 /**
  * Created by RuiPeng on 2017/7/23.
  */
-@WebServlet(name = "LoginServlet", urlPatterns = "/Login.servlet")
-public class Login extends HttpServlet {
+@WebServlet(name = "UserLogin_Servlet", urlPatterns = "/User_Login.servlet")
+public class User_Login extends HttpServlet {
     private LoginService loginService = new LoginServiceImpl();
 
     @Override
@@ -48,13 +48,13 @@ public class Login extends HttpServlet {
                 resp.addCookie(cookie1);
                 resp.addCookie(cookie2);
             }
-            resp.sendRedirect("/AdminisAccount.jsp");
+                resp.sendRedirect("/jsp/Navigation.jsp");
 //            PrintWriter writer = resp.getWriter();
 //            writer.print("欢迎"+info+"登陆！");
 //            resp.setHeader("Refresh", "3;URL=/NeuEstate/XXServlet");
         } else {
             req.getSession().setAttribute("info", "帐号或密码错误");
-            resp.sendRedirect("/Login.jsp");
+            resp.sendRedirect("/jsp/user/UserLogin.jsp");
         }
     }
 

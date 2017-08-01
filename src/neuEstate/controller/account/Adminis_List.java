@@ -1,6 +1,6 @@
 package neuEstate.controller.account;
 
-import neuEstate.po.account.RespPageParam;
+import neuEstate.po.RespPageParam;
 import neuEstate.po.account.UserNeu;
 import neuEstate.service.account.AdminisService;
 import neuEstate.service.account.AdminisServiceImpl;
@@ -16,6 +16,7 @@ import java.io.IOException;
 
 /**
  * Created by RuiPeng on 2017/7/31.
+ *管理员查看所有帐号
  */
 @WebServlet(name = "AdminisAccount_ListServlet", urlPatterns = "/AdminisAccount_List.servlet")
 public class Adminis_List extends HttpServlet {
@@ -34,10 +35,10 @@ public class Adminis_List extends HttpServlet {
             UserNeu userNeu=new UserNeu();
             userNeu.setUseraccount(userAccount);
             userNeu.setUsername(userName);
-            RespPageParam respPageParam=adminisService.queryAccount(Integer.parseInt(page),Integer.parseInt(rows),userNeu);
+            RespPageParam respPageParam=adminisService.queryAccount(Integer.parseInt(page),Integer.parseInt(rows),userNeu,false);
             JSONData.writeJSONData(resp,respPageParam,null);
         } else if (rows != null && page != null) {
-            RespPageParam respPageParam=adminisService.queryAccount(Integer.parseInt(page),Integer.parseInt(rows),new UserNeu());
+            RespPageParam respPageParam=adminisService.queryAccount(Integer.parseInt(page),Integer.parseInt(rows),new UserNeu(),false);
             JSONData.writeJSONData(resp,respPageParam,null);
         }
     }

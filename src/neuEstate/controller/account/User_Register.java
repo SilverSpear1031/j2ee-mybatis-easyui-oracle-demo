@@ -13,9 +13,10 @@ import java.io.IOException;
 
 /**
  * Created by RuiPeng on 2017/7/24.
+ * 用户注册
  */
-@WebServlet(name="RegisterServlet",urlPatterns = "/Register.servlet")
-public class Register extends HttpServlet{
+@WebServlet(name="UserRegister_Servlet",urlPatterns = "/User_Register.servlet")
+public class User_Register extends HttpServlet{
     private RegisterService registerService = new RegisterServiceImpl();
 
     @Override
@@ -38,10 +39,10 @@ public class Register extends HttpServlet{
         if(info.equals("添加用户成功！")){
             req.getSession().setAttribute("userName",userNeu.getUsername());
             req.getSession().setAttribute("userAccount",userNeu.getUseraccount());
-            resp.sendRedirect("/AdminisAccount.jsp");
+            resp.sendRedirect("/jsp/user/AdminisAccount.jsp");
         }else {
             req.getSession().setAttribute("info",info);
-            resp.sendRedirect("/Register.jsp");
+            resp.sendRedirect("/jsp/user/UserRegister.jsp");
         }
     }
 

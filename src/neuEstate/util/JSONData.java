@@ -1,7 +1,7 @@
 package neuEstate.util;
 
 import com.google.gson.Gson;
-import neuEstate.po.account.RespPageParam;
+import neuEstate.po.RespPageParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

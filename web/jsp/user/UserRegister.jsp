@@ -3,14 +3,14 @@
 <html>
 <head>
     <title>用户注册</title>
-    <link href="css/css.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/css.css" rel="stylesheet" type="text/css">
 </head>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <h4 align="center" style="color:red">${info}</h4>
-<form action="<c:url value='/Register.servlet'/>" method="post">
+<form action="<c:url value='/User_Register.servlet'/>" method="post">
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-            <td colspan="2" background="images/ny_top_img_bg.gif"><img src="images/ny_top_img.gif" width="650" height="108"></td>
+            <td colspan="2" background="../../../images/ny_top_img_bg.gif"><img src="../../../images/ny_top_img.gif" width="650" height="108"></td>
         </tr>
         <tr>
             <td width="75" height="23" bgcolor="#deedf8">&nbsp;</td>
@@ -19,7 +19,7 @@
     </table>
     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-            <td background="images/bg_point_write.gif"><table width="835" border="0" align="center" cellpadding="0" cellspacing="0">
+            <td background="../../../images/bg_point_write.gif"><table width="835" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tr>
                     <td height="30" colspan="2" align="center">&nbsp;</td>
                 </tr>
@@ -28,7 +28,7 @@
                     <td width="794" height="30" align="left" valign="top"><span class="text_blod_title">注册信息</span></td>
                 </tr>
                 <tr>
-                    <td height="15" colspan="2" align="center"><img src="images/line1.jpg" width="835" height="6"></td>
+                    <td height="15" colspan="2" align="center"><img src="../../../images/line1.jpg" width="835" height="6"></td>
                 </tr>
                 <tr>
                     <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -186,10 +186,10 @@
 
     <table width="100%" border="0" cellspacing="0">
         <tr>
-            <td height="2" background="images/bottom_point.gif"></td>
+            <td height="2" background="../../../images/bottom_point.gif"></td>
         </tr>
         <tr>
-            <td height="25" align="center" background="images/bottom_ny_bg.gif" class="text_cray">copyright@12306 购票网</td>
+            <td height="25" align="center" background="../../../images/bottom_ny_bg.gif" class="text_cray">copyright@12306 购票网</td>
         </tr>
     </table>
 </form>

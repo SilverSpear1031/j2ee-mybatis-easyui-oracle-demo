@@ -14,6 +14,7 @@ import java.io.IOException;
 
 /**
  * Created by RuiPeng on 2017/7/31.
+ * 管理员添加账户
  */
 @WebServlet(name = "AdminisAccount_AddServlet", urlPatterns = "/AdminisAccount_Add.servlet")
 public class Adminis_Add extends HttpServlet {

@@ -35,13 +35,13 @@ public class LoginFilter implements Filter {
                 }   //找不到自动登录的cookie，可能未设置自动登录
                 if (httpServletRequest.getSession().getAttribute("userName") == null || httpServletRequest.getSession().getAttribute("userAccount") == null) {
                     httpServletRequest.getSession().setAttribute("info", "请您先登录！");
-                    httpServletResponse.sendRedirect("/Login.jsp");
+                    httpServletResponse.sendRedirect("/jsp/user/UserLogin.jsp");
                     return;
                 }
             } else {     //cookie为空，可能未设置自动登录
                 if (httpServletRequest.getSession().getAttribute("userName") == null || httpServletRequest.getSession().getAttribute("userAccount") == null) {
                     httpServletRequest.getSession().setAttribute("info", "请您先登录！");
-                    httpServletResponse.sendRedirect("/Login.jsp");
+                    httpServletResponse.sendRedirect("/jsp/user/UserLogin.jsp");
                     return;
                 }
             }

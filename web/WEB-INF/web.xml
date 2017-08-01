@@ -3,23 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-    <!--<servlet>-->
-        <!--<servlet-name>Login</servlet-name>-->
-        <!--<servlet-class>neuEstate.controller.account.Login</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>Login</servlet-name>-->
-        <!--<url-pattern>/Login.servlet</url-pattern>-->
-    <!--</servlet-mapping>-->
-
-    <!--<servlet>-->
-        <!--<servlet-name>Register</servlet-name>-->
-        <!--<servlet-class>neuEstate.controller.account.Register</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>Register</servlet-name>-->
-        <!--<url-pattern>/Regist.servlet</url-pattern>-->
-    <!--</servlet-mapping>-->
     <servlet>
         <servlet-name>j2eelog4j</servlet-name>
         <servlet-class>neuEstate.util.J2eeLog4j</servlet-class>

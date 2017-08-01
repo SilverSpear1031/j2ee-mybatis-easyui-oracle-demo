@@ -1,4 +1,4 @@
-package neuEstate.po.account;
+package neuEstate.po;
 
 import java.util.List;
 

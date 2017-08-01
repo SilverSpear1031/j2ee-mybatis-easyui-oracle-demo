@@ -1,4 +1,4 @@
-package neuEstate.po.account;
+package neuEstate.po;
 
 /**
  * Created by RuiPeng on 2017/7/31.
