@@ -1,5 +1,6 @@
 package neuEstate.controller.account;
 
+import neuEstate.po.account.UserNeu;
 import neuEstate.service.account.AdminisService;
 import neuEstate.service.account.AdminisServiceImpl;
 import neuEstate.util.GetReqParameter;
@@ -25,7 +26,7 @@ public class Adminis_Add extends HttpServlet {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
 
-        int successNum=adminisService.addAccount(GetReqParameter.getReqParameter(req));
+        int successNum=adminisService.addAccount((UserNeu) GetReqParameter.getReqParameter(req,"userNeu"));
         JSONData.writeJSONData(resp,null,successNum);
     }
 

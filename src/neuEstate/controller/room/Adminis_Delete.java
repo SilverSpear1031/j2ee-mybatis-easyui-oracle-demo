@@ -1,34 +1,31 @@
-package neuEstate.controller.account;
+package neuEstate.controller.room;
+
+
+import neuEstate.service.room.AdminisService;
+import neuEstate.service.room.AdminisServiceImpl;
+import neuEstate.util.JSONData;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by RuiPeng on 2017/8/1.
+ * Created by RuiPeng on 2017/8/3.
  */
-@WebServlet(name = "UserLogout_Servlet", urlPatterns = "/User_Logout.servlet")
-public class User_Logout extends HttpServlet{
+@WebServlet(name = "AdminisRoom_DeleteServlet", urlPatterns = "/AdminisRoom_Delete.servlet")
+public class Adminis_Delete extends HttpServlet {
+    private AdminisService adminisService = new AdminisServiceImpl();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
 
-        req.getSession().removeAttribute("userName");
-        req.getSession().removeAttribute("userAccount");
-
-        Cookie cookie1 = new Cookie("userName", null);
-        Cookie cookie2 = new Cookie("userAccount", null);
-        cookie1.setMaxAge(0);
-        cookie2.setMaxAge(0);
-        resp.addCookie(cookie1);
-        resp.addCookie(cookie2);
-
-        resp.sendRedirect("/jsp/user/UserLogin.jsp");
+        String ids = req.getParameter("ids");
+        JSONData.writeJSONData(resp, null, adminisService.deleteRoom(ids));
     }
 
     @Override

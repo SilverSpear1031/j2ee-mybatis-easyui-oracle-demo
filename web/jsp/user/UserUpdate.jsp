@@ -305,7 +305,7 @@
            onclick="obj.save();">保存</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-redo" plain="true" style="display: none" id="redo"
            onclick="obj.redo();">取消</a>
-        <a href="<c:url value='/Logout'/>" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" >退出</a>
+        <%--<a href="<c:url value='/Logout'/>" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" >退出</a>--%>
     </div>
     <div>
         帐号<input type="text" name="userAccount"/>&nbsp;&nbsp;&nbsp;

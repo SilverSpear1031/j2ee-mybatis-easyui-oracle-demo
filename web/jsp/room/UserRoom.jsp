@@ -154,7 +154,7 @@
                 striped: true,//设置为true将交替显示行背景。
                 collapsible: false,//显示可折叠按钮
                 toolbar: "#tb",//在添加 增添、删除、修改操作的按钮要用到这个
-                url: '/AdminisRoom_List.servlet',//url调用Action方法
+                url: '/UserRoom_List.servlet',//url调用Action方法
                 loadMsg: '数据装载中......',
                 singleSelect: false,//为true时只能选择单行
                 fitColumns: true,//允许表格自动缩放，与列宽相对应
@@ -167,96 +167,96 @@
 //                } ] ],
                 pagination: true,//分页
                 rownumbers: true,//显示行数
-                onDblClickRow: function (rowIndex, rowData) {       //双击时得到index为下标,data为对应数据
-                    if (obj.editrow != undefined) {
-                        $('#mydatagrid').datagrid('endEdit', obj.editrow);      //选中第二条时得到第一条的索引
-                    }
-                    if (obj.editrow == undefined) {       //选中第一条时把索引保留
-                        $('#save,#redo').show();
-                        $('#mydatagrid').datagrid('beginEdit', rowIndex);
-                        obj.editrow = rowIndex;
-
-                        // 得到单元格对象,index指哪一行,field跟定义列的那个一样
-                        var cellEdit = $('#mydatagrid').datagrid('getEditor', {index: rowIndex, field: 'roomid'});
-                        var $input = cellEdit.target; // 得到文本框对象
-                        //$input.val('aaa'); // 设值
-                        $input.prop('readonly', true); // 设值只读
-                    }//双击开始编辑
-                },
-                onAfterEdit: function (rowIndex, rowData, changes) {     //编辑完成后执行
-                    $('#save,#redo').hide();
-
-                    var inserted = $('#mydatagrid').datagrid('getChanges', 'inserted');    //得到编辑情况，得到新增数据，json数组形式
-                    var updated = $('#mydatagrid').datagrid('getChanges', 'updated');     //得到修改数据
-//                    alert(inserted[0].stuid);
-                    if (inserted.length > 0) {      //新增
-                        $.ajax({
-                            type: 'POST',
-                            url: '/AdminisRoom_Add.servlet',    //  访问handle
-                            data: {
-                                roomid: inserted[0].roomid,
-                                roombuilding: inserted[0].roombuilding,
-                                roomfloor: inserted[0].roomfloor,
-                                roomdoor: inserted[0].roomdoor,
-                                roomarea: inserted[0].roomarea,
-                                roomholderaccount: inserted[0].roomholderaccount,
-                                roomwater: inserted[0].roomwater,
-                                roomelectrcity: inserted[0].roomelectrcity,
-                                roomgas: inserted[0].roomgas,
-                                roomestatefee: inserted[0].roomestatefee,
-                                roomholdername: inserted[0].roomholdername,
-                            },
-                            beforeSend: function () {
-                                $('#mydatagrid').datagrid('loading');
-                            },
-                            success: function (data) {
-                                if (data) {
-                                    $('#mydatagrid').datagrid('loaded');
-                                    $('#mydatagrid').datagrid('load');      //自动刷新
-                                    $('#mydatagrid').datagrid('unselectAll');
-                                    $.messager.show({
-                                        title: "提示",
-                                        msg: data + "个数据被成功添加！",
-                                    });
-                                }
-                            },
-                        })
-                    }
-                    if (updated.length > 0) {
-                        $.ajax({
-                            type: 'POST',
-                            url: '/AdminisRoom_Update.servlet',    //  访问handle
-                            data: {
-                                roomid: updated[0].roomid,
-                                roombuilding: updated[0].roombuilding,
-                                roomfloor: updated[0].roomfloor,
-                                roomdoor: updated[0].roomdoor,
-                                roomarea: updated[0].roomarea,
-                                roomholderaccount: updated[0].roomholderaccount,
-                                roomwater: updated[0].roomwater,
-                                roomelectrcity: updated[0].roomelectrcity,
-                                roomgas: updated[0].roomgas,
-                                roomestatefee: updated[0].roomestatefee,
-                                roomholdername: updated[0].roomholdername,
-                            },
-                            beforeSend: function () {
-                                $('#mydatagrid').datagrid('loading');
-                            },
-                            success: function (data) {
-                                if (data) {
-                                    $('#mydatagrid').datagrid('loaded');
-                                    $('#mydatagrid').datagrid('load');      //自动刷新
-                                    $('#mydatagrid').datagrid('unselectAll');
-                                    $.messager.show({
-                                        title: "提示",
-                                        msg: data + "个数据被成功修改！",
-                                    });
-                                }
-                            },
-                        })
-                    }
-                    obj.editrow = undefined;
-                },
+//                onDblClickRow: function (rowIndex, rowData) {       //双击时得到index为下标,data为对应数据
+//                    if (obj.editrow != undefined) {
+//                        $('#mydatagrid').datagrid('endEdit', obj.editrow);      //选中第二条时得到第一条的索引
+//                    }
+//                    if (obj.editrow == undefined) {       //选中第一条时把索引保留
+//                        $('#save,#redo').show();
+//                        $('#mydatagrid').datagrid('beginEdit', rowIndex);
+//                        obj.editrow = rowIndex;
+//
+//                        // 得到单元格对象,index指哪一行,field跟定义列的那个一样
+//                        var cellEdit = $('#mydatagrid').datagrid('getEditor', {index: rowIndex, field: 'roomid'});
+//                        var $input = cellEdit.target; // 得到文本框对象
+//                        //$input.val('aaa'); // 设值
+//                        $input.prop('readonly', true); // 设值只读
+//                    }//双击开始编辑
+//                },
+//                onAfterEdit: function (rowIndex, rowData, changes) {     //编辑完成后执行
+//                    $('#save,#redo').hide();
+//
+//                    var inserted = $('#mydatagrid').datagrid('getChanges', 'inserted');    //得到编辑情况，得到新增数据，json数组形式
+//                    var updated = $('#mydatagrid').datagrid('getChanges', 'updated');     //得到修改数据
+////                    alert(inserted[0].stuid);
+//                    if (inserted.length > 0) {      //新增
+//                        $.ajax({
+//                            type: 'POST',
+//                            url: '/AdminisRoom_Add.servlet',    //  访问handle
+//                            data: {
+//                                roomid: inserted[0].roomid,
+//                                roombuilding: inserted[0].roombuilding,
+//                                roomfloor: inserted[0].roomfloor,
+//                                roomdoor: inserted[0].roomdoor,
+//                                roomarea: inserted[0].roomarea,
+//                                roomholderaccount: inserted[0].roomholderaccount,
+//                                roomwater: inserted[0].roomwater,
+//                                roomelectrcity: inserted[0].roomelectrcity,
+//                                roomgas: inserted[0].roomgas,
+//                                roomestatefee: inserted[0].roomestatefee,
+//                                roomholdername: inserted[0].roomholdername,
+//                            },
+//                            beforeSend: function () {
+//                                $('#mydatagrid').datagrid('loading');
+//                            },
+//                            success: function (data) {
+//                                if (data) {
+//                                    $('#mydatagrid').datagrid('loaded');
+//                                    $('#mydatagrid').datagrid('load');      //自动刷新
+//                                    $('#mydatagrid').datagrid('unselectAll');
+//                                    $.messager.show({
+//                                        title: "提示",
+//                                        msg: data + "个数据被成功添加！",
+//                                    });
+//                                }
+//                            },
+//                        })
+//                    }
+//                    if (updated.length > 0) {
+//                        $.ajax({
+//                            type: 'POST',
+//                            url: '/AdminisRoom_Update.servlet',    //  访问handle
+//                            data: {
+//                                roomid: updated[0].roomid,
+//                                roombuilding: updated[0].roombuilding,
+//                                roomfloor: updated[0].roomfloor,
+//                                roomdoor: updated[0].roomdoor,
+//                                roomarea: updated[0].roomarea,
+//                                roomholderaccount: updated[0].roomholderaccount,
+//                                roomwater: updated[0].roomwater,
+//                                roomelectrcity: updated[0].roomelectrcity,
+//                                roomgas: updated[0].roomgas,
+//                                roomestatefee: updated[0].roomestatefee,
+//                                roomholdername: updated[0].roomholdername,
+//                            },
+//                            beforeSend: function () {
+//                                $('#mydatagrid').datagrid('loading');
+//                            },
+//                            success: function (data) {
+//                                if (data) {
+//                                    $('#mydatagrid').datagrid('loaded');
+//                                    $('#mydatagrid').datagrid('load');      //自动刷新
+//                                    $('#mydatagrid').datagrid('unselectAll');
+//                                    $.messager.show({
+//                                        title: "提示",
+//                                        msg: data + "个数据被成功修改！",
+//                                    });
+//                                }
+//                            },
+//                        })
+//                    }
+//                    obj.editrow = undefined;
+//                },
             });
 
         });
@@ -309,21 +309,21 @@
     </table>
 </div>
 <div id="tb">
-    <div>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="obj.add();">增加</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="obj.remove();">删除</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="obj.edit();">修改</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" style="display: none" id="save"
-           onclick="obj.save();">保存</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-redo" plain="true" style="display: none" id="redo"
-           onclick="obj.redo();">取消</a>
+    <%--<div>--%>
+        <%--<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="obj.add();">增加</a>--%>
+        <%--<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="obj.remove();">删除</a>--%>
+        <%--<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="obj.edit();">修改</a>--%>
+        <%--<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" style="display: none" id="save"--%>
+           <%--onclick="obj.save();">保存</a>--%>
+        <%--<a href="#" class="easyui-linkbutton" iconCls="icon-redo" plain="true" style="display: none" id="redo"--%>
+           <%--onclick="obj.redo();">取消</a>--%>
         <%--<a href="<c:url value='/Logout'/>" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" >退出</a>--%>
-    </div>
-    <div>
-        门牌号<input type="text" name="roomDoor"/>&nbsp;&nbsp;&nbsp;
-        业主名<input type="text" name="roomHolderName"/>&nbsp;&nbsp;&nbsp;
-        <a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="obj.search();">查询</a>
-    </div>
+    <%--</div>--%>
+    <%--<div>--%>
+        <%--门牌号<input type="text" name="roomDoor"/>&nbsp;&nbsp;&nbsp;--%>
+        <%--业主名<input type="text" name="roomHolderName"/>&nbsp;&nbsp;&nbsp;--%>
+        <%--<a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="obj.search();">查询</a>--%>
+    <%--</div>--%>
 </div>
 
 </body>

@@ -17,6 +17,7 @@
     <mappers>
         <mapper resource="neuEstate/dao/mapper/account/UserNeuMapper.xml"/>
         <mapper resource="neuEstate/dao/mapper/room/RoomNeuMapper.xml"/>
+        <mapper resource="neuEstate/dao/mapper/cpl/CplNeuMapper.xml"/>
     </mappers>
 
 </configuration>

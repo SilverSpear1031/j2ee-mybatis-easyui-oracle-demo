@@ -1,9 +1,9 @@
-package neuEstate.controller.room;
+package neuEstate.controller.cpl;
 
 import neuEstate.po.RespPageParam;
-import neuEstate.po.room.RoomNeu;
-import neuEstate.service.room.AdminisService;
-import neuEstate.service.room.AdminisServiceImpl;
+import neuEstate.po.cpl.CplNeu;
+import neuEstate.service.cpl.AdminisService;
+import neuEstate.service.cpl.AdminisServiceImpl;
 import neuEstate.util.JSONData;
 
 import javax.servlet.ServletException;
@@ -14,11 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by RuiPeng on 2017/8/1.
- * 管理员查看所有物业信息
+ * Created by RuiPeng on 2017/8/6.
+ * 管理员查看所有未解决投诉
  */
-@WebServlet(name = "AdminisRoom_ListServlet" ,urlPatterns ="/AdminisRoom_List.servlet" )
-public class Adminis_List2 extends HttpServlet {
+@WebServlet(name = "AdminisCpl_ListServlet" ,urlPatterns ="/AdminisCpl_List.servlet" )
+public class Adminis_List extends HttpServlet {
     private AdminisService adminisService = new AdminisServiceImpl();
 
     @Override
@@ -26,18 +26,19 @@ public class Adminis_List2 extends HttpServlet {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
 
-        String roomDoor = req.getParameter("roomDoor");
-        String roomHolderName = req.getParameter("roomHolderName");
+        String cplHolderName = req.getParameter("cplHolderName");
+        String cplType = req.getParameter("cplType");
         String rows = req.getParameter("rows");
         String page = req.getParameter("page");
-        if (roomDoor != null || roomHolderName != null) {
-            RoomNeu roomNeu = new RoomNeu();
-            roomNeu.setRoomdoor(roomDoor);
-            roomNeu.setRoomholdername(roomHolderName);
-            RespPageParam respPageParam = adminisService.queryRoom(Integer.parseInt(page), Integer.parseInt(rows), roomNeu, false);
+        if (cplHolderName != null || cplType != null) {
+            CplNeu cplNeu=new CplNeu();
+            cplNeu.setCplholdername(cplHolderName);
+            cplNeu.setCpltype(cplType);
+            cplNeu.setCplsolve("未解决");
+            RespPageParam respPageParam = adminisService.queryRoom(Integer.parseInt(page), Integer.parseInt(rows), cplNeu, false,null,false);
             JSONData.writeJSONData(resp, respPageParam, null);
         } else if (rows != null && page != null) {
-            RespPageParam respPageParam = adminisService.queryRoom(Integer.parseInt(page), Integer.parseInt(rows), new RoomNeu(), false);
+            RespPageParam respPageParam = adminisService.queryRoom(Integer.parseInt(page), Integer.parseInt(rows), new CplNeu(), false,null,false);
             JSONData.writeJSONData(resp, respPageParam, null);
         }
     }

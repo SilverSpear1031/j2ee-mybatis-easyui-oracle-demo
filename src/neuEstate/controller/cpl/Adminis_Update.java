@@ -1,8 +1,8 @@
-package neuEstate.controller.account;
+package neuEstate.controller.cpl;
 
-import neuEstate.po.account.UserNeu;
-import neuEstate.service.account.AdminisService;
-import neuEstate.service.account.AdminisServiceImpl;
+import neuEstate.po.cpl.CplNeu;
+import neuEstate.service.cpl.AdminisService;
+import neuEstate.service.cpl.AdminisServiceImpl;
 import neuEstate.util.GetReqParameter;
 import neuEstate.util.JSONData;
 
@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by RuiPeng on 2017/7/31.
- * 管理员修改帐号
+ * Created by RuiPeng on 2017/8/6.
+ * 管理员修改投诉信息
  */
-@WebServlet(name = "AdminisAccount_UpdateServlet", urlPatterns = "/AdminisAccount_Update.servlet")
+    @WebServlet(name = "AdminisCpl_UpdateServlet", urlPatterns = "/AdminisCpl_Update.servlet")
 public class Adminis_Update extends HttpServlet {
     private AdminisService adminisService = new AdminisServiceImpl();
 
@@ -26,7 +26,7 @@ public class Adminis_Update extends HttpServlet {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
 
-        int successNum=adminisService.updateAccount((UserNeu) GetReqParameter.getReqParameter(req,"userNeu"));
+        int successNum=adminisService.updateRoom((CplNeu) GetReqParameter.getReqParameter(req,"cplNeu"));
         JSONData.writeJSONData(resp,null,successNum);
     }
 

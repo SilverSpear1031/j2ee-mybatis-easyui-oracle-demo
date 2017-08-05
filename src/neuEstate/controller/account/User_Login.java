@@ -48,7 +48,12 @@ public class User_Login extends HttpServlet {
                 resp.addCookie(cookie1);
                 resp.addCookie(cookie2);
             }
-                resp.sendRedirect("/jsp/Navigation.jsp");
+
+            if(userNeu1.getUserauthority().equals("admin")) {
+                resp.sendRedirect("/jsp/NavigationAdminis.jsp");
+            }else {
+                resp.sendRedirect("/jsp/NavigationUser.jsp");
+            }
 //            PrintWriter writer = resp.getWriter();
 //            writer.print("欢迎"+info+"登陆！");
 //            resp.setHeader("Refresh", "3;URL=/NeuEstate/XXServlet");

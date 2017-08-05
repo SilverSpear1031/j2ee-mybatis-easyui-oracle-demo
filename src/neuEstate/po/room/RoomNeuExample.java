@@ -206,7 +206,7 @@ public class RoomNeuExample {
         }
 
         public Criteria andRoomidEqualTo(BigDecimal value) {
-            addCriterion("roomId =", value, "roomid");
+            addCriterion("\"roomId\" =", value, "roomid");
             return (Criteria) this;
         }
 
@@ -236,7 +236,7 @@ public class RoomNeuExample {
         }
 
         public Criteria andRoomidIn(List<BigDecimal> values) {
-            addCriterion("roomId in", values, "roomid");
+            addCriterion("\"roomId\" in", values, "roomid");
             return (Criteria) this;
         }
 
@@ -546,7 +546,7 @@ public class RoomNeuExample {
         }
 
         public Criteria andRoomholderaccountEqualTo(String value) {
-            addCriterion("roomHolderAccount =", value, "roomholderaccount");
+            addCriterion("\"roomHolderAccount\" =", value, "roomholderaccount");
             return (Criteria) this;
         }
 
