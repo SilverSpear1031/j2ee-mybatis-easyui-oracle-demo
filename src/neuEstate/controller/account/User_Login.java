@@ -34,8 +34,8 @@ public class User_Login extends HttpServlet {
             req.getSession().setAttribute("userAccount", userNeu1.getUseraccount());
 
             if (req.getParameter("autoLogin") != null) {      //自动登录
-                Cookie cookie1 = new Cookie("userName", userNeu1.getUsername());
-                Cookie cookie2 = new Cookie("userAccount", userNeu1.getUseraccount());
+                Cookie cookie1 = new Cookie("userName", userNeu.getUsername());
+                Cookie cookie2 = new Cookie("userAccount", userNeu.getUseraccount());
                 cookie1.setMaxAge(30 * 24 * 60 * 60);
                 cookie2.setMaxAge(30 * 24 * 60 * 60);
                 resp.addCookie(cookie1);

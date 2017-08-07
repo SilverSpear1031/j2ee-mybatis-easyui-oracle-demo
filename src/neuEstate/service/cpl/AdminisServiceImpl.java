@@ -14,8 +14,8 @@ import java.util.List;
 
 /**
  * Created by RuiPeng on 2017/8/6.
- * 1.管理员管理所有物业信息
- * 2.
+ * 1.管理员管理所有物业投诉，查看所有投诉历史记录
+ * 2.普通用户管理自己的物业投诉，查看自己的投诉历史
  */
 public class AdminisServiceImpl implements AdminisService {
     private SqlSession sqlSession = GetSqlSession.getSqlSessionFactory().openSession();
@@ -27,51 +27,50 @@ public class AdminisServiceImpl implements AdminisService {
         CplNeuExample.Criteria criteria = cplNeuExample.createCriteria();
         List rows = new ArrayList();
         Integer total = 0;
-        String cplSolve="未解决";
+        String cplSolve = "未解决";
 
 //******根据帐号或姓名模糊查询,因为oracle和mybatis的兼容问题，需要自定义方法和xml
-        if (updateJudge && historyJudge) {  //普通用户查看历史投诉
-
-        }else if(historyJudge){     //管理员查看历史投诉
-            cplSolve="已解决";
-        }else if (updateJudge) {    //普通用户查看当前投诉
-//            criteria.andRoomholderaccountEqualTo(userNeu.getUseraccount());
-//            rows=roomNeuMapper.selectByExample(roomNeuExample);
-//            total=roomNeuMapper.countByExample(roomNeuExample);
-//            sqlSession.commit();
-        } else {    //管理员查看当前投诉
-            if ((cplNeu.getCplholdername() != null && !cplNeu.getCplholdername().trim().isEmpty()) || (cplNeu.getCpltype() != null && !cplNeu.getCpltype().trim().isEmpty())) {
+        if (updateJudge && historyJudge) {  //普通用户查看历史投诉记录（没有模糊查询）
+            cplSolve = "已解决";
+            criteria.andCplholderaccountEqualTo(userNeu.getUseraccount());
+        } else if (historyJudge) {     //管理员查看历史投诉
+            cplSolve = "已解决";
+        } else if (updateJudge) {    //普通用户查看自己的当前投诉（没有模糊查询）
+            criteria.andCplholderaccountEqualTo(userNeu.getUseraccount());
+        }
+        //管理员查看当前投诉
+        if ((cplNeu.getCplholdername() != null && !cplNeu.getCplholdername().trim().isEmpty()) || (cplNeu.getCpltype() != null && !cplNeu.getCpltype().trim().isEmpty())) {
 //            criteria.andUseraccountLike("\'%" + userNeu.getUseraccount() + "%\'");
 
-                //双重模糊
-                if ((cplNeu.getCplholdername() != null && !cplNeu.getCplholdername().trim().isEmpty()) && (cplNeu.getCpltype() != null && !cplNeu.getCpltype().trim().isEmpty())) {
+            //双重模糊
+            if ((cplNeu.getCplholdername() != null && !cplNeu.getCplholdername().trim().isEmpty()) && (cplNeu.getCpltype() != null && !cplNeu.getCpltype().trim().isEmpty())) {
 //            criteria.andUsernameLike("\'%" + userNeu.getUsername() + "%\'");
-                    cplNeu.setCplsolve(cplSolve);
-                    rows = cplNeuMapper.selectByVagueDouble(cplNeu);
-                    total = cplNeuMapper.countByVagueDouble(cplNeu);
-                    sqlSession.commit();
+                cplNeu.setCplsolve(cplSolve);
+                rows = cplNeuMapper.selectByVagueDouble(cplNeu);
+                total = cplNeuMapper.countByVagueDouble(cplNeu);
+                sqlSession.commit();
 
-                    //仅模糊投诉人姓名
-                } else if (cplNeu.getCplholdername() != null && !cplNeu.getCplholdername().trim().isEmpty()) {
-                    cplNeu.setCplsolve(cplSolve);
-                    rows = cplNeuMapper.selectByVagueCplHolderName(cplNeu);
-                    total = cplNeuMapper.countByVagueCplHolderName(cplNeu);
-                    sqlSession.commit();
+                //仅模糊投诉人姓名
+            } else if (cplNeu.getCplholdername() != null && !cplNeu.getCplholdername().trim().isEmpty()) {
+                cplNeu.setCplsolve(cplSolve);
+                rows = cplNeuMapper.selectByVagueCplHolderName(cplNeu);
+                total = cplNeuMapper.countByVagueCplHolderName(cplNeu);
+                sqlSession.commit();
 
-                    //仅模糊投诉类型
-                } else if (cplNeu.getCpltype() != null && !cplNeu.getCpltype().trim().isEmpty()) {
-                    cplNeu.setCplsolve(cplSolve);
-                    rows = cplNeuMapper.selectByVagueCplType(cplNeu);
-                    total = cplNeuMapper.countByVagueCplType(cplNeu);
-                    sqlSession.commit();
-                }
-            } else {     //无模糊
-                criteria.andCplsolveEqualTo(cplSolve);
-                rows = cplNeuMapper.selectByExample(cplNeuExample);
-                total = cplNeuMapper.countByExample(cplNeuExample);
+                //仅模糊投诉类型
+            } else if (cplNeu.getCpltype() != null && !cplNeu.getCpltype().trim().isEmpty()) {
+                cplNeu.setCplsolve(cplSolve);
+                rows = cplNeuMapper.selectByVagueCplType(cplNeu);
+                total = cplNeuMapper.countByVagueCplType(cplNeu);
                 sqlSession.commit();
             }
+        } else {     //无模糊
+            criteria.andCplsolveEqualTo(cplSolve);
+            rows = cplNeuMapper.selectByExample(cplNeuExample);
+            total = cplNeuMapper.countByExample(cplNeuExample);
+            sqlSession.commit();
         }
+
 //        oracle中没有limit
         if (total < numOfList || (total - numOfList * (page - 1)) < numOfList) {      //仅一页
             rows = rows.subList(numOfList * (page - 1), total);

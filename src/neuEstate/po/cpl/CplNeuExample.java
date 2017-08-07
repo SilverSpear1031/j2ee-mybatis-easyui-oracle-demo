@@ -406,7 +406,7 @@ public class CplNeuExample {
         }
 
         public Criteria andCplholderaccountEqualTo(String value) {
-            addCriterion("cplHolderAccount =", value, "cplholderaccount");
+            addCriterion("\"cplHolderAccount\" =", value, "cplholderaccount");
             return (Criteria) this;
         }
 

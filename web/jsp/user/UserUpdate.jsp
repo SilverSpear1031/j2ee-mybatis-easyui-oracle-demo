@@ -15,13 +15,34 @@
     <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css"/>
     <!-- 引入easyUi小图标 -->
     <link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css"/>
-
     <script type="text/javascript">
+        var sex = [{ "value": "男", "text": "男" }, { "value": "女", "text": "女" }];
+        function sexformatter(value, rowData, rowIndex) {
+            if (value == 0) {
+                return;
+            }
+            for (var i = 0; i < sex.length; i++) {
+                if (sex[i].value == value) {
+                    return sex[i].text;
+                }
+            }
+        }
+        var idcard = [{ "value": "二代身份证", "text": "二代身份证" }, { "value": "港澳通行证", "text": "港澳通行证" }, { "value": "台湾通行证", "text": "台湾通行证" }, { "value": "护照", "text": "护照" }, { "value": "其他", "text": "其他" }];
+        function idcardformatter(value, rowData, rowIndex) {
+            if (value == 0) {
+                return;
+            }
+            for (var i = 0; i < idcard.length; i++) {
+                if (idcard[i].value == value) {
+                    return idcard[i].text;
+                }
+            }
+        }
         $(function () {
             $.extend($.fn.validatebox.defaults.rules, {     //自定义验证
                 mobile: {// 验证手机号码
                     validator: function (value) {
-                        return /^(13|15|18)\d{9}$/i.test(value);
+                        return /^(13|15|18|17)\d{9}$/i.test(value);
                     },
                     message: '手机号码格式不正确'
                 },
@@ -31,11 +52,11 @@
                     },
                     message: '请输入数字，并确保格式正确'
                 },
-                myfloat: {// 验证小数
+                email: {// 验证邮箱
                     validator: function (value) {
-                        return /^\d+\.+\d$/i.test(value);
+                        return /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/i.test(value);
                     },
-                    message: '请输入数字，并确保格式正确'
+                    message: '请输入电子邮箱，并确保格式正确'
                 },
                 length: {
                     validator: function (value, param) {
@@ -143,11 +164,10 @@
                     );
                 },
             };
-
             $('#mydatagrid').datagrid({
                 title: '物业账户管理',
                 iconCls: 'icon-ok',
-                width: 900,
+                width: 1100,
                 pageSize: 15,//给后台传rows
                 pageList: [15, 20, 25, 30],//可以选择的分页集合
                 nowrap: true,//设置为true，当数据长度超出列宽时将会自动截取
@@ -267,7 +287,7 @@
     <table id="mydatagrid">
         <thead>
         <tr>
-            <th data-options="field:'useraccount',sortable:true,width:66,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[6,30]'],},}">
+            <th data-options="field:'useraccount',width:66,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[6,30]'],},}">
                 &nbsp;帐号
             </th>
             <th data-options="field:'userpassword',width:66,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[6,30]'],},}">
@@ -276,22 +296,22 @@
             <th data-options="field:'username',width:66,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[1,8]'],},}">
                 姓名
             </th>
-            <th data-options="field:'usergender',width:66,align:'center',editor:{type:'validatebox',options:{required:false,validType:['length[1,2]'],},}">
+            <th data-options="field:'usergender',width:66,align:'center',formatter: sexformatter,editor:{type:'combobox',options:{data:sex,required:true,editable: false,},}">
                 性别
             </th>
-            <th data-options="field:'useridcardtype',width:66,align:'center',editor:{type:'validatebox',options:{required:false,validType:['length[1,6]'],},}">
+            <th data-options="field:'useridcardtype',width:88,align:'center',formatter: idcardformatter,editor:{type:'combobox',options:{data:idcard,required:true,editable: false,},}">
                 证件类型
             </th>
-            <th data-options="field:'useridcard',width:66,align:'center',editor:{type:'validatebox',options:{required:false,validType:['length[1,32]'],},}">
+            <th data-options="field:'useridcard',width:166,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[1,32]'],},}">
                 证件号
             </th>
-            <th data-options="field:'userphonenumber',width:66,align:'center',editor:{type:'validatebox',options:{required:false,validType:['mobile','length[1,20]'],},}">
+            <th data-options="field:'userphonenumber',width:66,align:'center',editor:{type:'validatebox',options:{required:true,validType:['mobile','length[1,20]'],},}">
                 联系电话
             </th>
-            <th data-options="field:'useremail',width:66,align:'center',editor:{type:'validatebox',options:{required:false,validType:['length[1,30]'],},}">
+            <th data-options="field:'useremail',width:144,align:'center',editor:{type:'validatebox',options:{required:true,validType:['email','length[1,30]'],},}">
                 邮箱
             </th>
-            <th data-options="field:'userauthority',sortable:true,width:66,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[0,10]'],},}">
+            <th data-options="field:'userauthority',width:66,align:'center',">
                 &nbsp;权限
             </th>
         </tr>
@@ -307,11 +327,11 @@
            onclick="obj.redo();">取消</a>
         <%--<a href="<c:url value='/Logout'/>" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" >退出</a>--%>
     </div>
-    <div>
-        帐号<input type="text" name="userAccount"/>&nbsp;&nbsp;&nbsp;
-        姓名<input type="text" name="userName"/>&nbsp;&nbsp;&nbsp;
-        <a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="obj.search();">查询</a>
-    </div>
+    <%--<div>--%>
+        <%--帐号<input type="text" name="userAccount"/>&nbsp;&nbsp;&nbsp;--%>
+        <%--姓名<input type="text" name="userName"/>&nbsp;&nbsp;&nbsp;--%>
+        <%--<a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="obj.search();">查询</a>--%>
+    <%--</div>--%>
 </div>
 
 </body>

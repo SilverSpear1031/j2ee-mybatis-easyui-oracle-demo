@@ -96,14 +96,14 @@
 //                        $.messager.alert('提示', '请选择要删除的记录！', 'info');
 //                    }
 //                },
-                search: function () {
-                    $('#mydatagrid').datagrid(
-                        'load', {
-                            cplHolderName: $('input[name="cplHolderName"]').val(),
-                            cplType: $('input[name="cplType"]').val(),
-                        }
-                    );
-                },
+//                search: function () {
+//                    $('#mydatagrid').datagrid(
+//                        'load', {
+//                            cplHolderName: $('input[name="cplHolderName"]').val(),
+//                            cplType: $('input[name="cplType"]').val(),
+//                        }
+//                    );
+//                },
 //                edit: function () {
 //                    var rows = $('#mydatagrid').datagrid('getSelections');       //返回选中的行，没有时返回空数组
 //                    if (rows.length == 1) {     //选中一条时才可点击修改
@@ -154,7 +154,7 @@
                 striped: true,//设置为true将交替显示行背景。
                 collapsible: false,//显示可折叠按钮
                 toolbar: "#tb",//在添加 增添、删除、修改操作的按钮要用到这个
-                url: '/AdminisCpl_ListHistory.servlet',//url调用Action方法
+                url: '/UserCpl_ListHistory.servlet',//url调用Action方法
                 loadMsg: '数据装载中......',
                 singleSelect: false,//为true时只能选择单行
                 fitColumns: true,//允许表格自动缩放，与列宽相对应
@@ -268,7 +268,7 @@
         <thead>
         <tr>
             <th data-options="field:'cplid',sortable:true,width:70,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[6,30]'],},}">
-                &nbsp;投诉ID
+                &nbsp;ID
             </th>
             <th data-options="field:'cpltype',width:50,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[6,30]'],},}">
                 类型
@@ -300,20 +300,20 @@
 </div>
 <div id="tb">
     <%--<div>--%>
-        <%--<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="obj.add();">增加</a>--%>
-        <%--<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="obj.remove();">删除</a>--%>
-        <%--<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="obj.edit();">修改</a>--%>
-        <%--<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" style="display: none" id="save"--%>
-           <%--onclick="obj.save();">保存</a>--%>
-        <%--<a href="#" class="easyui-linkbutton" iconCls="icon-redo" plain="true" style="display: none" id="redo"--%>
-           <%--onclick="obj.redo();">取消</a>--%>
-        <%--&lt;%&ndash;<a href="<c:url value='/Logout'/>" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" >退出</a>&ndash;%&gt;--%>
+    <%--<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="obj.add();">增加</a>--%>
+    <%--<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="obj.remove();">删除</a>--%>
+    <%--<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="obj.edit();">修改</a>--%>
+    <%--<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" style="display: none" id="save"--%>
+    <%--onclick="obj.save();">保存</a>--%>
+    <%--<a href="#" class="easyui-linkbutton" iconCls="icon-redo" plain="true" style="display: none" id="redo"--%>
+    <%--onclick="obj.redo();">取消</a>--%>
+    <%--&lt;%&ndash;<a href="<c:url value='/Logout'/>" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" >退出</a>&ndash;%&gt;--%>
     <%--</div>--%>
-    <div>
-        投诉人<input type="text" name="cplHolderName"/>&nbsp;&nbsp;&nbsp;
-        类型<input type="text" name="cplType"/>&nbsp;&nbsp;&nbsp;
-        <a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="obj.search();">查询</a>
-    </div>
+    <%--<div>--%>
+        <%--投诉人<input type="text" name="cplHolderName"/>&nbsp;&nbsp;&nbsp;--%>
+        <%--类型<input type="text" name="cplType"/>&nbsp;&nbsp;&nbsp;--%>
+        <%--<a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="obj.search();">查询</a>--%>
+    <%--</div>--%>
 </div>
 
 </body>

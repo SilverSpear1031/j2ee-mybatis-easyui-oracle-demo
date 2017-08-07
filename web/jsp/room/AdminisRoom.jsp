@@ -17,6 +17,28 @@
     <link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css"/>
 
     <script type="text/javascript">
+        var building = [{ "value": "1栋", "text": "1栋" }, { "value": "2栋", "text": "2栋" }, { "value": "3栋", "text": "3栋" }, { "value": "4栋", "text": "4栋" }, { "value": "5栋", "text": "5栋" }, { "value": "6栋", "text": "6栋" }, { "value": "7栋", "text": "7栋" }, { "value": "8栋", "text": "8栋" }, { "value": "9栋", "text": "9栋" }, { "value": "11栋", "text": "11栋" }, { "value": "12栋", "text": "12栋" }, { "value": "12栋", "text": "12栋" }, { "value": "13栋", "text": "13栋" }, { "value": "14栋", "text": "14栋" }];
+        function buildingformatter(value, rowData, rowIndex) {
+            if (value == 0) {
+                return;
+            }
+            for (var i = 0; i < building.length; i++) {
+                if (building[i].value == value) {
+                    return building[i].text;
+                }
+            }
+        }
+        var floor = [{ "value": "1层", "text": "1层" }, { "value": "2层", "text": "2层" }, { "value": "3层", "text": "3层" }, { "value": "4层", "text": "4层" }, { "value": "5层", "text": "5层" }, { "value": "6层", "text": "6层" }, { "value": "7层", "text": "7层" }, { "value": "8层", "text": "8层" }, { "value": "9层", "text": "9层" }, { "value": "11层", "text": "11层" }, { "value": "12层", "text": "12层" }, { "value": "12层", "text": "12层" }, { "value": "13层", "text": "13层" }, { "value": "14层", "text": "14层" }];
+        function floorformatter(value, rowData, rowIndex) {
+            if (value == 0) {
+                return;
+            }
+            for (var i = 0; i < floor.length; i++) {
+                if (floor[i].value == value) {
+                    return floor[i].text;
+                }
+            }
+        }
         $(function () {
             $.extend($.fn.validatebox.defaults.rules, {     //自定义验证
                 mobile: {// 验证手机号码
@@ -271,37 +293,37 @@
     <table id="mydatagrid">
         <thead>
         <tr>
-            <th data-options="field:'roomid',sortable:true,width:54,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[6,30]'],},}">
-                &nbsp;ID
+            <th data-options="field:'roomid',width:54,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[6,30]'],},}">
+                &nbsp;数据ID
             </th>
-            <th data-options="field:'roombuilding',width:54,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[6,30]'],},}">
+            <th data-options="field:'roombuilding',width:54,align:'center',formatter: buildingformatter,editor:{type:'combobox',options:{data:building,required:true,editable: false,},}">
                 楼栋
             </th>
-            <th data-options="field:'roomfloor',width:54,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[1,8]'],},}">
+            <th data-options="field:'roomfloor',width:54,align:'center',formatter: floorformatter,editor:{type:'combobox',options:{data:floor,required:true,editable: false,},}">
                 楼层
             </th>
-            <th data-options="field:'roomdoor',width:54,align:'center',editor:{type:'validatebox',options:{required:false,validType:['length[1,2]'],},}">
+            <th data-options="field:'roomdoor',width:54,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[1,10]'],},}">
                 门牌号
             </th>
-            <th data-options="field:'roomarea',width:54,align:'center',editor:{type:'validatebox',options:{required:false,validType:['length[1,6]'],},}">
+            <th data-options="field:'roomarea',width:54,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[1,6]'],},}">
                 面积
             </th>
-            <th data-options="field:'roomholderaccount',width:54,align:'center',editor:{type:'validatebox',options:{required:false,validType:['length[1,32]'],},}">
+            <th data-options="field:'roomholderaccount',width:54,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[1,32]'],},}">
                 业主账号
             </th>
-            <th data-options="field:'roomwater',width:54,align:'center',editor:{type:'validatebox',options:{required:false,validType:['mobile','length[1,20]'],},}">
+            <th data-options="field:'roomwater',width:54,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[1,30]'],},}">
                 欠水费
             </th>
-            <th data-options="field:'roomelectrcity',width:54,align:'center',editor:{type:'validatebox',options:{required:false,validType:['length[1,30]'],},}">
+            <th data-options="field:'roomelectrcity',width:54,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[1,30]'],},}">
                 欠电费
             </th>
-            <th data-options="field:'roomgas',width:54,align:'center',editor:{type:'validatebox',options:{required:false,validType:['length[1,30]'],},}">
+            <th data-options="field:'roomgas',width:54,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[1,30]'],},}">
                 欠气费
             </th>
-            <th data-options="field:'roomestatefee',width:54,align:'center',editor:{type:'validatebox',options:{required:false,validType:['length[1,30]'],},}">
+            <th data-options="field:'roomestatefee',width:54,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[1,30]'],},}">
                 欠物业费
             </th>
-            <th data-options="field:'roomholdername',sortable:true,width:54,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[0,10]'],},}">
+            <th data-options="field:'roomholdername',width:54,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[0,10]'],},}">
                 &nbsp;业主名称
             </th>
         </tr>

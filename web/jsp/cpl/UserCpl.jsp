@@ -61,6 +61,10 @@
                 }
             }
         });
+        window.onload = function () {
+            $('#mydatagrid').datagrid('hideColumn','cplholderaccount');     //隐藏投诉人账户（add时后台添加账户信息）
+        };
+
         $(function () {
             $.extend($.fn.validatebox.defaults.rules, {     //自定义验证
                 mobile: {// 验证手机号码
@@ -191,14 +195,14 @@
             $('#mydatagrid').datagrid({
                 title: '物业投诉管理',
                 iconCls: 'icon-ok',
-                width: 1530,
+                width: 1500,
                 pageSize: 15,//给后台传rows
                 pageList: [15, 20, 25, 30],//可以选择的分页集合
                 nowrap: true,//设置为true，当数据长度超出列宽时将会自动截取
                 striped: true,//设置为true将交替显示行背景。
                 collapsible: false,//显示可折叠按钮
                 toolbar: "#tb",//在添加 增添、删除、修改操作的按钮要用到这个
-                url: '/AdminisCpl_List.servlet',//url调用Action方法
+                url: '/UserCpl_List.servlet',//url调用Action方法
                 loadMsg: '数据装载中......',
                 singleSelect: false,//为true时只能选择单行
                 fitColumns: true,//允许表格自动缩放，与列宽相对应
@@ -236,7 +240,7 @@
                     if (inserted.length > 0) {      //新增
                         $.ajax({
                             type: 'POST',
-                            url: '/AdminisCpl_Add.servlet',    //  访问handle
+                            url: '/UserCpl_Add.servlet',    //  访问handle
                             data: {
                                 cplid: inserted[0].cplid,
                                 cpltype: inserted[0].cpltype,
@@ -311,28 +315,28 @@
     <table id="mydatagrid">
         <thead>
         <tr>
-            <th data-options="field:'cplid',width:70,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[6,30]'],},}">
-                &nbsp;投诉ID
+            <th data-options="field:'cplid',sortable:true,width:70,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[6,30]'],},}">
+                &nbsp;数据ID
             </th>
-            <th data-options="field:'cpltype',width:50,align:'center'">
+            <th data-options="field:'cpltype',width:50,align:'center',formatter: cpltypeformatter,editor:{type:'combobox',options:{data:cpltype,required:true,editable: false,},}">
                 类型
             </th>
             <th data-options="field:'cplholderaccount',width:70,align:'center'">
                 投诉人帐号
             </th>
-            <th data-options="field:'cplholdername',width:80,align:'center'">
+            <th data-options="field:'cplholdername',width:80,align:'center',editor:{type:'validatebox',options:{required:false,validType:['length[1,6]'],},}">
                 投诉人
             </th>
-            <th data-options="field:'cplholderphonenumber',width:80,align:'center'">
+            <th data-options="field:'cplholderphonenumber',width:80,align:'center',editor:{type:'validatebox',options:{required:false,validType:['mobile','length[1,32]'],},}">
                 联系方式
             </th>
-            <th data-options="field:'cpltime',width:80,align:'center'">
+            <th data-options="field:'cpltime',width:80,align:'center',editor:'datebox'">
                 时间
             </th>
-            <th data-options="field:'cplsolve',width:80,align:'center'">
+            <th data-options="field:'cplsolve',width:80,align:'center',formatter: cplsolveformatter,editor:{type:'combobox',options:{data:cplsolve,required:true,editable: false,},}">
                 是否解决
             </th>
-            <th data-options="field:'cplcontent',width:400,align:'center'">
+            <th data-options="field:'cplcontent',width:400,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[1,80]'],},}">
                 内容
             </th>
             <th data-options="field:'cplreply',width:370,align:'center',editor:{type:'validatebox',options:{required:false,validType:['length[1,80]'],},}">
@@ -344,7 +348,7 @@
 </div>
 <div id="tb">
     <div>
-        <%--<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="obj.add();">增加</a>--%>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="obj.add();">增加</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="obj.remove();">删除</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="obj.edit();">修改</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" style="display: none" id="save"
@@ -353,11 +357,11 @@
            onclick="obj.redo();">取消</a>
         <%--<a href="<c:url value='/Logout'/>" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" >退出</a>--%>
     </div>
-    <div>
-        投诉人<input type="text" name="cplHolderName"/>&nbsp;&nbsp;&nbsp;
-        类型<input type="text" name="cplType"/>&nbsp;&nbsp;&nbsp;
-        <a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="obj.search();">查询</a>
-    </div>
+    <%--<div>--%>
+        <%--投诉人<input type="text" name="cplHolderName"/>&nbsp;&nbsp;&nbsp;--%>
+        <%--类型<input type="text" name="cplType"/>&nbsp;&nbsp;&nbsp;--%>
+        <%--<a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="obj.search();">查询</a>--%>
+    <%--</div>--%>
 </div>
 
 </body>

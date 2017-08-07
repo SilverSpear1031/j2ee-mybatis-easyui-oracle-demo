@@ -280,7 +280,7 @@
             <th data-options="field:'roomfloor',width:54,align:'center',editor:{type:'validatebox',options:{required:true,validType:['length[1,8]'],},}">
                 楼层
             </th>
-            <th data-options="field:'roomdoor',width:54,align:'center',editor:{type:'validatebox',options:{required:false,validType:['length[1,2]'],},}">
+            <th data-options="field:'roomdoor',width:54,align:'center',editor:{type:'validatebox',options:{required:false,validType:['length[1,10]'],},}">
                 门牌号
             </th>
             <th data-options="field:'roomarea',width:54,align:'center',editor:{type:'validatebox',options:{required:false,validType:['length[1,6]'],},}">

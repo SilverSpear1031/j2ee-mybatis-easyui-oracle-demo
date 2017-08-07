@@ -60,7 +60,7 @@
         <div title="物业账户管理">
             <ul>
                 <li>
-                    <a href="javascript:addTab('UserUpdate.jsp','个人账户管理','<c:url value='user/UserUpdate.jsp'/>');">个人账户管理</a>
+                    <a href="javascript:addTab('UserUpdate','个人账户管理','<c:url value='user/UserUpdate.jsp'/>');">个人账户管理</a>
                 </li>
                 <li>
                     <a href="javascript:addTab('AdminisAccount','业主账户管理','<c:url value='user/AdminisAccount.jsp'/>');">业主账户管理</a>
@@ -78,6 +78,9 @@
             <ul>
                 <li>
                     <a href="javascript:addTab('AdminisCpl','物业投诉管理','<c:url value='cpl/AdminisCpl.jsp'/>');">物业投诉管理</a>
+                </li>
+                <li>
+                    <a href="javascript:addTab('AdminisCplHistory','物业投诉历史记录','<c:url value='cpl/AdminisCplHistory.jsp'/>');">物业投诉历史记录</a>
                 </li>
             </ul>
         </div>

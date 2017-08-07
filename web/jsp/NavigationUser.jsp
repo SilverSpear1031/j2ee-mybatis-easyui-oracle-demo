@@ -76,14 +76,24 @@
         <div title="物业账户管理">
             <ul>
                 <li>
-                    <a href="javascript:addTab('UserUpdate.jsp','个人账户管理','<c:url value='user/UserUpdate.jsp'/>');">个人账户管理</a>
+                    <a href="javascript:addTab('UserUpdate','个人账户管理','<c:url value='user/UserUpdate.jsp'/>');">个人账户管理</a>
                 </li>
             </ul>
         </div>
-        <div title="物业信息管理" selected="true">
+        <div title="物业信息管理">
             <ul>
                 <li>
                     <a href="javascript:addTab('UserRoom','物业信息查看','<c:url value='room/UserRoom.jsp'/>');">物业信息查看</a>
+                </li>
+            </ul>
+        </div>
+        <div title="物业投诉管理" selected="true">
+            <ul>
+                <li>
+                    <a href="javascript:addTab('UserCpl','物业投诉管理','<c:url value='cpl/UserCpl.jsp'/>');">物业投诉管理</a>
+                </li>
+                <li>
+                    <a href="javascript:addTab('UserCplHistory','物业投诉历史记录','<c:url value='cpl/UserCplHistory.jsp'/>');">物业投诉历史记录</a>
                 </li>
             </ul>
         </div>
