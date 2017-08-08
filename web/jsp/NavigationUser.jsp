@@ -67,7 +67,7 @@
 <body class="easyui-layout">
 <!-- 正上方panel -->
 <div region="north" style="height:80px;padding:1px;background-color: #0092DC">
-    <h1 style="vertical-align: middle">物业管理系统</h1>
+    <h1 style="color:red">欢迎用户：&nbsp;${userName}&nbsp;</h1>
 </div>
 <!-- 正左边panel -->
 <div region="west" title="用户导航" split="true" style="width:280px;padding1:1px;overflow:hidden;">
